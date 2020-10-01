@@ -2,18 +2,21 @@
     <div class="player">
         <Header :time="time" :routeName="route.title" />
         <StationsList :stops="route.stops" :currentStop="currentStop" />
+        <GIFViewer :currentStop="currentStop" />
     </div>
 </template>
 
 <script>
 import Header from './components/Header';
 import StationsList from './components/StationsList';
+import GIFViewer from './components/GIFViewer';
 
 export default {
     name: 'Player',
     components: {
         Header,
-        StationsList
+        StationsList,
+        GIFViewer
     },
     props: {
         route: Object
