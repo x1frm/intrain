@@ -32,5 +32,16 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    height: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    #app {
+        width: 600px;
+        border: 2px solid black;
+        margin: 20px auto;
+        height: calc(100vh - 44px);
+        width: calc((100vh - 44px) / 1.77);
+    }
 }
 </style>
