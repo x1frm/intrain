@@ -34,5 +34,18 @@ export default {
 
     .about {
         cursor: pointer;
+        width: 80px;
+        text-align: left;
+    }
+
+    .route-name {
+        margin: 0 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .time {
+        width: 80px;
+        text-align: right;
     }
 </style>
