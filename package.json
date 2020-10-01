@@ -1,0 +1,19 @@
+{
+  "name": "intrain",
+  "version": "0.0.1",
+  "description": "Ride in suburban train and listen to the stories related to upcoming station",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x1frm/intrain.git"
+  },
+  "author": "x1frm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/x1frm/intrain/issues"
+  },
+  "homepage": "https://github.com/x1frm/intrain#readme"
+}
