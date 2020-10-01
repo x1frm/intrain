@@ -1,14 +1,26 @@
 <template>
     <div id="app">
+        <Player :route="route" />
     </div>
 </template>
 
 <script>
+import Player from './Player';
+import mainService from './services/main.service';
 
 export default {
     name: 'App',
     components: {
+        Player
     },
+    data() {
+        return {
+            route: {}
+        }
+    },
+    async created() {
+        this.route = await mainService.getRoute();
+    }
 };
 </script>
 
