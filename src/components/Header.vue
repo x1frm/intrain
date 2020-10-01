@@ -5,7 +5,7 @@
             {{ routeName }}
         </div>
         <div class="time">
-            {{ time }}
+            {{ time.toLocaleTimeString('ru-RU') }}
         </div>
     </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     name: 'Header',
     props: {
         routeName: String,
-        time: String
+        time: Date
     }
 }
 </script>
@@ -24,10 +24,12 @@ export default {
     .header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         background-color: $main;
         color: #ffffff;
         text-transform: uppercase;
-        padding: 4px 8px;
+        padding: 0 8px;
+        height: $top-bar-height;
     }
 
     .about {

@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Player :route="route" />
+        <Player :route="route" id="player" />
     </div>
 </template>
 
@@ -33,6 +33,10 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
     height: 100%;
+}
+
+#player {
+    height: calc(100% - #{$top-bar-height});
 }
 
 @media screen and (min-width: 600px) {
