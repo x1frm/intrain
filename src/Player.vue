@@ -1,7 +1,7 @@
 <template>
     <div class="player">
         <Header :time="time" :routeName="route.title" />
-        <StationsList :stops="route.stops" :currentStop="currentStop" />
+        <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
         <GIFViewer :currentStop="currentStop" />
     </div>
 </template>
@@ -24,12 +24,16 @@ export default {
     data() {
         return {
             time: new Date,
-            timeUpdateInterval: 1000
+            timeUpdateInterval: 1000,
+            manualMode: false,
+            manualModeStop: 0
         }
     },
     computed: {
         currentStop() {
-            return this.route.stops && this.route.stops.findIndex(el => el.time - this.timeUpdateInterval > this.time.getTime()) - 1;
+            return this.manualMode ?
+                this.manualModeStop :
+                this.route.stops && this.route.stops.findIndex(el => el.time - this.timeUpdateInterval > this.time.getTime()) - 1;
         }
     },
     mounted() {
@@ -39,6 +43,10 @@ export default {
         getTime() {
             setTimeout(this.getTime, this.timeUpdateInterval);
             this.time = new Date;
+        },
+        changeStop(idx) {
+            this.manualMode = true;
+            this.manualModeStop = idx;
         }
     }
 }

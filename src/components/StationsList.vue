@@ -2,6 +2,7 @@
     <div class="stations">
         <div v-for="(stop, idx) in stops"
             :key="stop.title"
+            @click="onStopClick(idx)"
             class="stop"
             :class="idx === currentStop && 'active'">
             <div class="title">
@@ -36,6 +37,9 @@ export default {
     methods: {
         formatTime(unix) {
             return (new Date(unix)).toLocaleTimeString('ru-RU').slice(0, 5);
+        },
+        onStopClick(idx) {
+            this.$emit('change-stop', idx);
         }
     }
 }
@@ -52,6 +56,7 @@ export default {
         display: flex;
         align-items: center;
         height: 40px;
+        cursor: pointer;
 
         &::before {
             content: '';
