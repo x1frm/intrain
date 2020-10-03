@@ -1,6 +1,9 @@
 <template>
     <div id="app">
-        <Player :route="route" id="player" />
+        <button v-if="!loggedIn" @click="login">
+            press x to win
+        </button>
+        <Player v-else :route="route" id="player" />
     </div>
 </template>
 
@@ -15,11 +18,17 @@ export default {
     },
     data() {
         return {
-            route: {}
+            route: {},
+            loggedIn: false
         }
     },
     async created() {
         this.route = await mainService.getRoute();
+    },
+    methods: {
+        login() {
+            this.loggedIn = true;
+        }
     }
 };
 </script>
