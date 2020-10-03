@@ -1,7 +1,8 @@
 class MainService {
     async getRoute() {
         const yandexData = await import('../../public/routes/spb-luga.json');
-        const userFirstStop = Math.floor(Math.random() * yandexData.stops.length);
+        // I put -2 so user won't go in on the last stop :)
+        const userFirstStop = Math.floor(Math.random() * yandexData.stops.length - 2);
         const departureTime = Date.now() - yandexData.stops[userFirstStop].duration * 1000;
 
         return {
