@@ -3,6 +3,7 @@
         <Header :time="time" :routeName="route.title" />
         <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
         <GIFViewer :currentStop="currentStop" />
+        <Controls :currentStop="currentStop" />
     </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Header from './components/Header';
 import StationsList from './components/StationsList';
 import GIFViewer from './components/GIFViewer';
+import Controls from './components/Controls';
 
 export default {
     name: 'Player',
     components: {
         Header,
         StationsList,
-        GIFViewer
+        GIFViewer,
+        Controls
     },
     props: {
         route: Object
