@@ -13,7 +13,7 @@
             </template>
             <v-card justify="center">
                 <v-card-title class="headline">
-                    ВЭлектричке
+                    <img src="/assets/logo.png" height="40">
                 </v-card-title>
 
                 <div class="about-image">
@@ -106,5 +106,9 @@ export default {
         font-size: 1.6em;
         text-align: center;
         line-height: 1;
+    }
+
+    .headline {
+        justify-content: center;
     }
 </style>

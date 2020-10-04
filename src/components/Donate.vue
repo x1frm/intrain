@@ -7,7 +7,7 @@
         >
             <v-card justify="center">
                 <v-card-title class="headline">
-                    ВЭлектричке
+                    <img src="/assets/logo.png" height="40">
                 </v-card-title>
 
                 <div class="donate-image">
@@ -34,7 +34,7 @@
         >
             <v-card justify="center">
                 <v-card-title class="headline">
-                    ВЭлектричке
+                    <img src="/assets/logo.png" height="40">
                 </v-card-title>
 
                 <div class="donate-image">
@@ -96,5 +96,9 @@ export default {
     .donate-image {
         text-align: center;
         margin: 8px 0;
+    }
+
+    .headline {
+        justify-content: center;
     }
 </style>
