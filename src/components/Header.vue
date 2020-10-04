@@ -77,12 +77,14 @@ export default {
         text-transform: uppercase;
         padding: 0 8px;
         height: $top-bar-height;
+        font-size: 18px;
     }
 
     .about {
         cursor: pointer;
         width: 80px;
         text-align: left;
+        font-size: 24px;
     }
 
     .route-name {

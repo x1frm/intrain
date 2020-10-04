@@ -99,7 +99,8 @@ export default {
 
 <style lang="scss">
 html, body, #app, #intrain, #player, .v-application--wrap {
-    height: 100%;
+    height: 100% !important;
+    min-height: unset !important;
     margin: 0;
 }
 
@@ -132,7 +133,7 @@ html, body, #app, #intrain, #player, .v-application--wrap {
         border-radius: 8px;
         position: fixed;
         left: 50%;
-        top: 100px;
+        top: 50px;
         transform: translate(-50%, -50%);
         opacity: 0;
         color: #f4f4f4;

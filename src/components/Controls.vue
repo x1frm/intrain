@@ -29,11 +29,12 @@ export default {
     },
     watch: {
         currentStop() {
-            !this.paused && this.playAudio();
+            !this.paused && this.currentStop < this.stops.length - 1 && this.playAudio();
         }
     },
     mounted() {
         this.playAudio();
+        this.$refs.audio.addEventListener('ended', () => this.paused = true);
     },
     methods: {
         seekAudio(sec) {
