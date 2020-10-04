@@ -1,9 +1,7 @@
 <template>
     <v-app>
         <div id="intrain">
-            <button v-if="!loggedIn" @click="login">
-                press x to win
-            </button>
+            <Welcome v-if="!loggedIn" @close="login" />
             <Player v-else :route="route" id="player" />
 
             <div class="message" :class="showMessage && 'show'">
@@ -16,12 +14,14 @@
 <script>
 import Player from './Player';
 import mainService from './services/main.service';
+import Welcome from './components/Welcome';
 import { EventBus } from '@/main.js';
 
 export default {
     name: 'App',
     components: {
-        Player
+        Player,
+        Welcome
     },
     data() {
         return {
@@ -104,9 +104,7 @@ html, body, #app, #intrain, #player, .v-application--wrap {
 }
 
 #intrain {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: Roboto, sans-serif;
     text-align: center;
     color: #2c3e50;
     height: 100%;
