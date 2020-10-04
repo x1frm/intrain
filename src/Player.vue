@@ -48,6 +48,7 @@ export default {
             this.time = new Date;
         },
         changeStop(idx) {
+            if (idx < 0 || idx >= this.route.stops.length) return;
             this.manualMode = true;
             this.manualModeStop = idx;
         }
