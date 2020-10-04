@@ -3,7 +3,7 @@
         <Header :time="time" :routeName="route.title" />
         <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
         <GIFViewer :currentStop="currentStop" />
-        <Controls :currentStop="currentStop" />
+        <Controls :currentStop="currentStop" @change-stop="changeStop" />
     </div>
 </template>
 
