@@ -144,6 +144,12 @@ export default {
                 display: none;
             }
         }
+
+        &:last-child {
+            .pulse {
+                display: none;
+            }
+        }
     }
 
     .time {
