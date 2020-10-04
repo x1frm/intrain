@@ -23,8 +23,13 @@ export default {
             paused: false
         }
     },
+    watch: {
+        currentStop() {
+            this.playAudio();
+        }
+    },
     mounted() {
-        this.$refs.audio.play();
+        this.playAudio();
     },
     methods: {
         seekAudio(sec) {
@@ -36,6 +41,10 @@ export default {
         },
         changeStop(delta) {
             this.$emit('change-stop', this.currentStop + delta);
+        },
+        async playAudio() {
+            await this.$nextTick();
+            this.$refs.audio.play();
         }
     }
 }
