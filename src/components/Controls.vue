@@ -20,12 +20,12 @@ export default {
     },
     data() {
         return {
-            paused: false
+            paused: true
         }
     },
     watch: {
         currentStop() {
-            this.playAudio();
+            !this.paused && this.playAudio();
         }
     },
     mounted() {
@@ -45,6 +45,7 @@ export default {
         async playAudio() {
             await this.$nextTick();
             this.$refs.audio.play();
+            this.paused = false;
         }
     }
 }
