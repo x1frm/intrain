@@ -8,6 +8,7 @@ class MainService {
         return {
             title: yandexData.short_title,
             departureTime,
+            userFirstStop,
             stops: yandexData.stops.map(el => ({
                 title: el.station.popular_title || el.station.title,
                 time: el.duration * 1000 + departureTime

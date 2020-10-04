@@ -71,7 +71,7 @@
         align-items: center;
         text-align: left;
         align-self: baseline;
-        justify-content: start;
+        justify-content: flex-start;
         height: 80px;
 
         .icon {

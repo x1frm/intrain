@@ -1,7 +1,8 @@
 <template>
     <v-app>
         <div id="intrain">
-            <Welcome v-if="!loggedIn" @close="login" />
+            <Welcome v-if="showWelcome" @close="showWelcome = false" />
+            <Scan v-else-if="!loggedIn" @route-loaded="onRouteLoad" />
             <Player v-else :route="route" id="player" />
 
             <div class="message" :class="showMessage && 'show'">
@@ -16,12 +17,14 @@ import Player from './Player';
 import mainService from './services/main.service';
 import Welcome from './components/Welcome';
 import { EventBus } from '@/main.js';
+import Scan from './components/Scan';
 
 export default {
     name: 'App',
     components: {
         Player,
-        Welcome
+        Welcome,
+        Scan
     },
     data() {
         return {
@@ -29,13 +32,12 @@ export default {
             loggedIn: false,
             message: '',
             showMessage: false,
-            timer: 0
+            timer: 0,
+            showWelcome: true
         }
     },
-    async created() {
+    created() {
         EventBus.$on('logout', this.logout);
-
-        this.route = await mainService.getRoute();
     },
     mounted() {
         EventBus.$on('notificate', msg => {
@@ -92,6 +94,10 @@ export default {
         },
         logout() {
             this.loggedIn = false;
+        },
+        onRouteLoad(route) {
+            this.route = route;
+            this.login();
         }
     }
 };
@@ -123,6 +129,31 @@ html, body, #app, #intrain, #player, .v-application--wrap {
         height: calc(100vh - 44px);
         width: calc((100vh - 44px) / 1.77);
     }
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid $main;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 </style>
 
