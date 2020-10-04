@@ -4,6 +4,7 @@
         <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
         <GIFViewer :currentStop="currentStop" class="gifs" />
         <Controls :currentStop="currentStop" @change-stop="changeStop" :stops="route.stops" />
+        <Donate :show="showDonate" @close="showDonate = false" />
     </div>
 </template>
 
@@ -12,6 +13,7 @@ import Header from './components/Header';
 import StationsList from './components/StationsList';
 import GIFViewer from './components/GIFViewer';
 import Controls from './components/Controls';
+import Donate from './components/Donate';
 
 export default {
     name: 'Player',
@@ -19,7 +21,8 @@ export default {
         Header,
         StationsList,
         GIFViewer,
-        Controls
+        Controls,
+        Donate
     },
     props: {
         route: Object
@@ -29,14 +32,26 @@ export default {
             time: new Date,
             timeUpdateInterval: 1000,
             manualMode: false,
-            manualModeStop: 0
+            manualModeStop: 0,
+            showDonate: false
         }
     },
     computed: {
         currentStop() {
-            return this.manualMode ?
-                this.manualModeStop :
-                this.route.stops && this.route.stops.findIndex(el => el.time - this.timeUpdateInterval > this.time.getTime()) - 1;
+            if (this.manualMode) return this.manualModeStop;
+
+            const nextStop = this.route.stops && this.route.stops.findIndex(el => el.time - this.timeUpdateInterval > this.time.getTime());
+            if (nextStop === -1) {
+                return this.route.stops.length - 1;
+            }
+            return nextStop - 1;
+        }
+    },
+    watch: {
+        currentStop(newVal) {
+            if (newVal === this.route.stops.length - 1) {
+                this.showDonate = true;
+            }
         }
     },
     mounted() {

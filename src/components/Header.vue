@@ -25,20 +25,20 @@
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn
-                    text
-                    href="http://azino-tri-topora.top/"
-                    class="about-btn"
-                >
-                    Дать ему денег
-                </v-btn>
-                <v-btn
-                    text
-                    @click="dialog = false"
-                    color="red"
-                >
-                    Не дать
-                </v-btn>
+                    <v-btn
+                        text
+                        href="http://azino-tri-topora.top/"
+                        class="main-btn"
+                    >
+                        Дать ему денег
+                    </v-btn>
+                    <v-btn
+                        text
+                        @click="dialog = false"
+                        color="red"
+                    >
+                        Не дать
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -106,9 +106,5 @@ export default {
         font-size: 1.6em;
         text-align: center;
         line-height: 1;
-    }
-
-    .about-btn {
-        color: $main !important;
     }
 </style>

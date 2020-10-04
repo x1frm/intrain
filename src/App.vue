@@ -12,6 +12,7 @@
 <script>
 import Player from './Player';
 import mainService from './services/main.service';
+import { EventBus } from '@/main.js';
 
 export default {
     name: 'App',
@@ -25,11 +26,16 @@ export default {
         }
     },
     async created() {
+        EventBus.$on('logout', this.logout);
+
         this.route = await mainService.getRoute();
     },
     methods: {
         login() {
             this.loggedIn = true;
+        },
+        logout() {
+            this.loggedIn = false;
         }
     }
 };
@@ -52,6 +58,10 @@ html, body {
 
 #player {
     height: calc(100% - #{$top-bar-height});
+}
+
+.main-btn {
+    color: $main !important;
 }
 
 @media screen and (min-width: 600px) {
