@@ -87,5 +87,6 @@ export default {
 
     .gifs {
         flex: auto;
+        margin: 8px 0;
     }
 </style>

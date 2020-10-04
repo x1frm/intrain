@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style lang="scss">
-html, body {
+html, body, #app, #intrain, #player, .v-application--wrap {
     height: 100%;
     margin: 0;
 }
@@ -110,10 +110,6 @@ html, body {
     text-align: center;
     color: #2c3e50;
     height: 100%;
-}
-
-#player {
-    height: calc(100% - #{$top-bar-height});
 }
 
 .main-btn {
