@@ -108,8 +108,8 @@ export default {
                 border: 6px solid red;
                 background: transparent;
                 border-radius: 60px;
-                height: 16px;
-                width: 16px;
+                height: 28px;
+                width: 28px;
                 position: absolute;
                 top: -9px;
                 left: -9px;
