@@ -14,6 +14,7 @@ import StationsList from './components/StationsList';
 import GIFViewer from './components/GIFViewer';
 import Controls from './components/Controls';
 import Donate from './components/Donate';
+import { EventBus } from '@/main';
 
 export default {
     name: 'Player',
@@ -56,6 +57,9 @@ export default {
     },
     mounted() {
         this.getTime();
+
+        EventBus.$on('swipe-left', () => this.changeStop(this.currentStop + 1));
+        EventBus.$on('swipe-right', () => this.changeStop(this.currentStop - 1));
     },
     methods: {
         getTime() {
