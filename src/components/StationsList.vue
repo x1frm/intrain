@@ -8,7 +8,7 @@
             <div class="circle" :class="idx <= currentStop && 'passed'">
                 <div v-show="idx === currentStop" class="pulse"></div>
             </div>
-            <div class="title">
+            <div class="name">
                 {{ stop.title }}
             </div>
             <div class="time">
@@ -93,19 +93,18 @@ export default {
                 left: calc(50% - 1px);
                 width: 2px;
                 height: 30px;
-                z-index: -1;
                 background-color: inherit;
             }
 
             &.passed {
-                background-color: red;
+                background-color: $secondary;
             }
 
             .pulse {
                 animation: pulsing 3s ease-out;
                 animation-iteration-count: infinite;
 
-                border: 6px solid red;
+                border: 6px solid $secondary;
                 background: transparent;
                 border-radius: 60px;
                 height: 28px;
