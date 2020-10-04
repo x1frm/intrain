@@ -1,10 +1,12 @@
 <template>
-    <div id="app">
-        <button v-if="!loggedIn" @click="login">
-            press x to win
-        </button>
-        <Player v-else :route="route" id="player" />
-    </div>
+    <v-app>
+        <div id="intrain">
+            <button v-if="!loggedIn" @click="login">
+                press x to win
+            </button>
+            <Player v-else :route="route" id="player" />
+        </div>
+    </v-app>
 </template>
 
 <script>
@@ -39,7 +41,7 @@ html, body {
     margin: 0;
 }
 
-#app {
+#intrain {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -53,7 +55,7 @@ html, body {
 }
 
 @media screen and (min-width: 600px) {
-    #app {
+    #intrain {
         width: 600px;
         border: 2px solid black;
         margin: 20px auto;
