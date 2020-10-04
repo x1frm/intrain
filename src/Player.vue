@@ -70,6 +70,9 @@ export default {
             if (idx < 0 || idx >= this.route.stops.length) return;
             this.manualMode = true;
             this.manualModeStop = idx;
+
+            const stopName = this.route.stops[this.currentStop].title;
+            EventBus.$emit('notificate', `Станция ${stopName}`);
         }
     }
 }

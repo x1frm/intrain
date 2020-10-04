@@ -5,6 +5,10 @@
                 press x to win
             </button>
             <Player v-else :route="route" id="player" />
+
+            <div class="message" :class="showMessage && 'show'">
+                {{ message }}
+            </div>
         </div>
     </v-app>
 </template>
@@ -22,7 +26,10 @@ export default {
     data() {
         return {
             route: {},
-            loggedIn: false
+            loggedIn: false,
+            message: '',
+            showMessage: false,
+            timer: 0
         }
     },
     async created() {
@@ -31,6 +38,14 @@ export default {
         this.route = await mainService.getRoute();
     },
     mounted() {
+        EventBus.$on('notificate', msg => {
+            clearTimeout(this.timer);
+            this.message = msg;
+            this.showMessage = true;
+            this.timer = setTimeout(() => this.showMessage = false, 2000);
+        });
+
+
         let touchstartX = 0;
         let touchstartY = 0;
         let touchendX = 0;
@@ -114,4 +129,24 @@ html, body {
         width: calc((100vh - 44px) / 1.77);
     }
 }
+</style>
+
+<style lang="scss" scoped>
+    .message {
+        padding: 8px 16px;
+        background-color: gray;
+        border-radius: 8px;
+        position: fixed;
+        left: 50%;
+        top: 100px;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        color: #f4f4f4;
+        transition: opacity 3s ease;
+
+        &.show {
+            opacity: 0.8;
+            transition: opacity 1s ease;
+        }
+    }
 </style>
