@@ -139,6 +139,10 @@ html, body, #app, #intrain, #player, .v-application--wrap {
         color: #f4f4f4;
         transition: opacity 3s ease;
 
+        @media screen and (min-width: 600px) {
+            top: 100px;
+        }
+
         &.show {
             opacity: 0.8;
             transition: opacity 1s ease;
