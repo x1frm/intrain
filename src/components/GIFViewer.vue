@@ -1,5 +1,5 @@
 <template>
-    <div class="gif">
+    <div class="gifs">
         <img :src="gifSrc" />
     </div>
 </template>
@@ -19,6 +19,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .gifs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     img {
         max-width: 90%;
     }

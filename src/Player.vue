@@ -2,7 +2,7 @@
     <div class="player">
         <Header :time="time" :routeName="route.title" />
         <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
-        <GIFViewer :currentStop="currentStop" />
+        <GIFViewer :currentStop="currentStop" class="gifs" />
         <Controls :currentStop="currentStop" @change-stop="changeStop" />
     </div>
 </template>
@@ -55,3 +55,15 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .player {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .gifs {
+        flex: auto;
+    }
+</style>
