@@ -29,10 +29,12 @@ export default {
         }
     },
     watch: {
-        async currentStop(newVal) {
-            await this.$nextTick();
-            this.$el.scrollTo(0, newVal * 40 - 80);
+        currentStop(newVal) {
+            this.scrollToStop(newVal);
         }
+    },
+    mounted() {
+        this.scrollToStop(this.currentStop);
     },
     methods: {
         formatTime(unix) {
@@ -40,6 +42,10 @@ export default {
         },
         onStopClick(idx) {
             this.$emit('change-stop', idx);
+        },
+        async scrollToStop(stop) {
+            await this.$nextTick();
+            this.$el.scrollTo(0, stop * 40 - 80);
         }
     }
 }
