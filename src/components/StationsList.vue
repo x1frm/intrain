@@ -3,8 +3,11 @@
         <div v-for="(stop, idx) in stops"
             :key="stop.title"
             @click="onStopClick(idx)"
-            class="stop"
-            :class="idx === currentStop && 'active'">
+            class="stop">
+
+            <div class="circle" :class="idx <= currentStop && 'passed'">
+                <div v-show="idx === currentStop" class="pulse"></div>
+            </div>
             <div class="title">
                 {{ stop.title }}
             </div>
@@ -54,8 +57,18 @@ export default {
 <style lang="scss" scoped>
     .stations {
         height: 200px;
-        overflow: auto;
-        margin: 4px 16px;
+        overflow-y: auto;
+        padding: 0 16px;
+        margin: 4px 0;
+
+        @media screen and (min-width: 600px) {
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
 
     .stop {
@@ -64,17 +77,73 @@ export default {
         height: 40px;
         cursor: pointer;
 
-        &::before {
+        .circle {
             content: '';
             border-radius: 100%;
             background-color: $main;
-            width: 15px;
-            height: 15px;
+            width: 10px;
+            height: 10px;
             margin-right: 8px;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 100%;
+                left: calc(50% - 1px);
+                width: 2px;
+                height: 30px;
+                z-index: -1;
+                background-color: inherit;
+            }
+
+            &.passed {
+                background-color: red;
+            }
+
+            .pulse {
+                animation: pulsing 3s ease-out;
+                animation-iteration-count: infinite;
+
+                border: 6px solid red;
+                background: transparent;
+                border-radius: 60px;
+                height: 16px;
+                width: 16px;
+                position: absolute;
+                top: -9px;
+                left: -9px;
+                opacity: 0;
+                
+                @keyframes pulsing {
+                    0% {
+                    transform: scale(0);
+                    opacity: 0.0;
+                    }
+                    25% {
+                    transform: scale(0);
+                    opacity: 0.1;
+                    }
+                    50% {
+                    transform: scale(0.1);
+                    opacity: 0.3;
+                    }
+                    75% {
+                    transform: scale(0.5);
+                    opacity: 0.5;
+                    }
+                    100% {
+                    transform: scale(1);
+                    opacity: 0.0;
+                    }
+                }
+            }
         }
 
-        &.active::before {
-            background-color: red;
+        &:first-child {
+            .circle::before {
+                display: none;
+            }
         }
     }
 
