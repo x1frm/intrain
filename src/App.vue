@@ -1,8 +1,7 @@
 <template>
     <v-app>
         <div id="intrain">
-            <Welcome v-if="showWelcome" @close="showWelcome = false" />
-            <Scan v-else-if="!loggedIn" @route-loaded="onRouteLoad" />
+            <Welcome v-if="showWelcome" @close="onWelcomeClose" />
             <Player v-else :route="route" id="player" />
 
             <div class="message" :class="showMessage && 'show'">
@@ -17,14 +16,12 @@ import Player from './Player';
 import mainService from './services/main.service';
 import Welcome from './components/Welcome';
 import { EventBus } from '@/main.js';
-import Scan from './components/Scan';
 
 export default {
     name: 'App',
     components: {
         Player,
         Welcome,
-        Scan
     },
     data() {
         return {
@@ -36,8 +33,9 @@ export default {
             showWelcome: true
         }
     },
-    created() {
+    async created() {
         EventBus.$on('logout', this.logout);
+        this.route = await mainService.getRoute();
     },
     mounted() {
         EventBus.$on('notificate', msg => {
@@ -95,8 +93,8 @@ export default {
         logout() {
             this.loggedIn = false;
         },
-        onRouteLoad(route) {
-            this.route = route;
+        onWelcomeClose() {
+            this.showWelcome = false;
             this.login();
         }
     }
