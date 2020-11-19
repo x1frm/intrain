@@ -111,7 +111,7 @@ html, body, #app, #intrain, #player, .v-application--wrap {
 #intrain {
     font-family: Roboto, sans-serif;
     text-align: center;
-    color: #2c3e50;
+    color: $text-color;
     height: 100%;
 }
 
@@ -152,6 +152,10 @@ html, body, #app, #intrain, #player, .v-application--wrap {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.v-carousel__controls__item {
+    color: $main !important;
 }
 </style>
 
