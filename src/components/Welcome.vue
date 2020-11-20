@@ -1,6 +1,6 @@
 <template>
     <div class="welcome">
-        <img src="/assets/logo.png" class="main-logo">
+        <img src="assets/logo.png" class="main-logo">
 
         <div class="carousel-container">
 

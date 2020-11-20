@@ -7,11 +7,11 @@
         >
             <v-card justify="center">
                 <v-card-title class="headline">
-                    <img src="/assets/logo.png" height="40">
+                    <img src="assets/logo.png" height="40">
                 </v-card-title>
 
                 <div class="donate-image">
-                    <img src="/assets/donate1.jpg" />
+                    <img src="assets/donate1.jpg" />
                 </div>
 
                 <v-card-actions>
@@ -34,11 +34,11 @@
         >
             <v-card justify="center">
                 <v-card-title class="headline">
-                    <img src="/assets/logo.png" height="40">
+                    <img src="assets/logo.png" height="40">
                 </v-card-title>
 
                 <div class="donate-image">
-                    <img src="/assets/donate2.png" />
+                    <img src="assets/donate2.png" />
                 </div>
 
                 <v-card-actions>

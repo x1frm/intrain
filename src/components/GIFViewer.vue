@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         gifSrc() {
-            return '/assets/gif/' +  (this.currentStop + 1) + '.mp4';
+            return 'assets/gif/' +  (this.currentStop + 1) + '.mp4';
         }
     },
     mounted() {

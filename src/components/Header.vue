@@ -13,7 +13,7 @@
             </template>
             <v-card justify="center">
                 <v-card-title class="headline">
-                    <img src="/assets/logo.png" class="main-logo">
+                    <img src="assets/logo.png" class="main-logo">
                 </v-card-title>
 
                 <v-card-text class="about-text">
