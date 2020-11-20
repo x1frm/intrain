@@ -113,7 +113,7 @@ export default {
             setTimeout(() => {
                 const all = document.querySelectorAll('.v-carousel__item');
                 const element = document.querySelectorAll('.v-carousel__item')[this.slide];
-                this.showScrollBtn = element.scrollHeight !== element.clientHeight;
+                this.showScrollBtn = element.scrollHeight > element.clientHeight + 10;
             }, 0);
         },
         onSlideChange(number) {

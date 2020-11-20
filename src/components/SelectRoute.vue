@@ -152,4 +152,8 @@ export default {
         align-self: center;
         margin: 0 8px;
     }
+
+    .row {
+        display: flex;
+    }
 </style>
