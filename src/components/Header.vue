@@ -16,12 +16,31 @@
                     <img src="/assets/logo.png" class="main-logo">
                 </v-card-title>
 
-                <div class="about-image">
-                    <img src="/assets/about.jpg" height="250" />
-                </div>
-
                 <v-card-text class="about-text">
-                    "Даже шляпу негде повесить в вашем ёбаном гадюшнике"
+                    <div class="justify">
+                        У нас тоже много вопросов о том, что это такое. Если у вас есть предложения, замечания или слова благодарности, то пишите их  в телеграм бота @moskva-petushki или на почту
+                        <a href="mailto:m-p@taeg.pro">m-p@taeg.pro</a>.
+                    </div>
+
+                    <br><br><strong>Спектакль создавали:</strong><br>
+
+                    Режиссер: Дмитрий Крестьянкин<br>
+                    Продюсер: Егор Татаренко<br>
+                    Музыкальный руководитель: Даниил Посаженников<br>
+                    Сайт: Александр Швец<br>
+                    Дизайн: Алена Пылаева<br>
+                    <strong>ВЕНЯ 1</strong><br>
+                    Веня:  Александр Манько<br>
+                    Ангелы: Анастасия Мощенко и Кристина Веденеева<br>
+                    <strong>ВЕНЯ 2</strong><br>
+                    Веня:  Александр Манько<br>
+                    Ангелы: Анастасия Мощенко и Кристина Веденеева<br>
+                    <strong>ВЕНЯ 3</strong> <br>
+                    Веня:  Александр Манько<br>
+                    Ангелы: Анастасия Мощенко и Кристина Веденеева<br>
+                    <strong>ВЕНЯ 4</strong> <br>
+                    Веня:  Александр Манько<br>
+                    Ангелы: Анастасия Мощенко и Кристина Веденеева
                 </v-card-text>
                 <v-card-actions>
                 <v-spacer></v-spacer>
@@ -30,14 +49,7 @@
                         @click="dialog = false"
                         class="main-btn"
                     >
-                        Дать ему денег
-                    </v-btn>
-                    <v-btn
-                        text
-                        @click="dialog = false"
-                        color="red"
-                    >
-                        Не дать
+                        Понятно
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -103,16 +115,8 @@ export default {
         text-align: right;
     }
 
-    .about-image {
-        text-align: center;
-        margin: 8px 0;
-    }
-
-    .about-text {
-        font-family: 'Lobster', cursive;
-        font-size: 1.6em;
-        text-align: center;
-        line-height: 1;
+    .justify {
+        text-align: justify;
     }
 
     .headline {
