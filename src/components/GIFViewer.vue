@@ -1,6 +1,6 @@
 <template>
     <div class="gifs">
-        <div v-show="isLoading" class="loader"></div>
+        <div v-show="isLoading && currentStop !== -1" class="loader"></div>
         <video v-show="!isLoading" ref="video" :src="gifSrc" type="video/mp4" loop>
             <!-- <source :src="gifSrc" type="video/mp4"> -->
         </video>

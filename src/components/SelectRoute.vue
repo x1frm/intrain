@@ -75,7 +75,7 @@ export default {
                         const nextStop = route.stops.findIndex(stop => stop.departure > now);
                         switch (nextStop) {
                         case -1:
-                            return route.stops[route.stops.length - 1].arrival < now ?
+                            return route.stops[route.stops.length - 1].arrival > now ?
                                 {
                                     from: route.stops[route.stops.length - 2].title,
                                     to: route.stops[route.stops.length - 1].title

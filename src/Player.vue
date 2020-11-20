@@ -43,7 +43,9 @@ export default {
 
             const nextStop = this.route.stops && this.route.stops.findIndex(el => el.departure - this.timeUpdateInterval > this.time.getTime());
             if (nextStop === -1) {
-                return this.route.stops.length - 1;
+                return this.route.stops[this.route.stops.length - 1].arrival > this.time.getTime() ?
+                    this.route.stops.length - 2:
+                    this.route.stops.length - 1;
             }
             return nextStop - 1;
         }
