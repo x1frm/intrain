@@ -8,7 +8,7 @@
             <i class="fas fa-forward" @click="seekAudio(5)"></i>
         </div>
 
-        <audio :src="`assets/audio/${currentStop + 1}.mp3`" ref="audio" />
+        <audio :src="`assets/audio/${currentStop % 28 + 1}.mp3`" ref="audio" />
     </div>
 </template>
 

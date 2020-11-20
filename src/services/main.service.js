@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const proxy = 'http://localhost:7000';
+const proxy = 'http://192.168.1.5:7000';
 
 class MainService {
     async getRoutes() {
