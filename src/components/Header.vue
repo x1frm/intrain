@@ -68,7 +68,6 @@
 export default {
     name: 'Header',
     props: {
-        routeName: String,
         time: Date
     },
     data() {

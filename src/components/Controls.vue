@@ -24,7 +24,6 @@ export default {
     data() {
         return {
             paused: true,
-            timer: 0
         }
     },
     watch: {
