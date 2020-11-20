@@ -13,11 +13,11 @@
             </template>
             <v-card justify="center">
                 <v-card-title class="headline">
-                    <img src="/assets/logo.png" height="40">
+                    <img src="/assets/logo.png" class="main-logo">
                 </v-card-title>
 
                 <div class="about-image">
-                    <img src="/assets/about.jpg" height="300" />
+                    <img src="/assets/about.jpg" height="250" />
                 </div>
 
                 <v-card-text class="about-text">
@@ -27,7 +27,7 @@
                 <v-spacer></v-spacer>
                     <v-btn
                         text
-                        href="http://azino-tri-topora.top/"
+                        @click="dialog = false"
                         class="main-btn"
                     >
                         Дать ему денег
@@ -47,7 +47,7 @@
             МОСКВА - ПЕТУШКИ
         </div>
         <div class="time">
-            {{ time.toLocaleTimeString('ru-RU') }}
+            {{ time.toLocaleTimeString('ru-RU').slice(0, 5) }}
         </div>
     </div>
 </template>
@@ -77,24 +77,29 @@ export default {
         text-transform: uppercase;
         padding: 0 8px;
         height: $top-bar-height;
-        font-size: 18px;
+        font-size: 16px;
+    }
+
+    .main-logo {
+        max-width: 100%;
     }
 
     .about {
         cursor: pointer;
-        width: 80px;
+        width: 50px;
         text-align: left;
         font-size: 24px;
     }
 
     .route-name {
-        margin: 0 16px;
+        margin: 0 12px;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .time {
-        width: 80px;
+        width: 50px;
         text-align: right;
     }
 

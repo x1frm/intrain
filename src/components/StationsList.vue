@@ -77,6 +77,10 @@ export default {
         height: 40px;
         cursor: pointer;
 
+        .name {
+            text-align: left;
+        }
+
         .circle {
             content: '';
             border-radius: 100%;

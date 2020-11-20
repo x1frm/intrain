@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss" scoped>
     .buttons {
-        font-size: 3em;
+        font-size: 2em;
         user-select: none;
 
         i {
