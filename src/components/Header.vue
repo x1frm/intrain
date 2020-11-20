@@ -44,7 +44,7 @@
         </v-dialog>
 
         <div class="route-name">
-            {{ routeName }}
+            МОСКВА - ПЕТУШКИ
         </div>
         <div class="time">
             {{ time.toLocaleTimeString('ru-RU') }}

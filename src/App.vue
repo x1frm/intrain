@@ -1,7 +1,8 @@
 <template>
     <v-app>
         <div id="intrain">
-            <Welcome v-if="showWelcome" @close="onWelcomeClose" />
+            <Welcome v-if="showWelcome" @close="showWelcome = false" />
+            <SelectRoute v-else-if="!loggedIn" :routes="nowRoutes" @route-loaded="onRouteLoad" :time="time" />
             <Player v-else :route="route" id="player" />
 
             <div class="message" :class="showMessage && 'show'">
@@ -16,28 +17,35 @@ import Player from './Player';
 import mainService from './services/main.service';
 import Welcome from './components/Welcome';
 import { EventBus } from '@/main.js';
+import SelectRoute from './components/SelectRoute';
 
 export default {
     name: 'App',
     components: {
         Player,
         Welcome,
+        SelectRoute
     },
     data() {
         return {
-            route: {},
+            route: null,
+            nowRoutes: [],
             loggedIn: false,
             message: '',
             showMessage: false,
             timer: 0,
-            showWelcome: true
+            showWelcome: true,
+            time: new Date,
+            timeUpdateInterval: 1000,
         }
     },
     async created() {
         EventBus.$on('logout', this.logout);
-        this.route = await mainService.getRoute();
+        this.nowRoutes = await mainService.getRoutes();
     },
     mounted() {
+        this.getTime();
+
         EventBus.$on('notificate', msg => {
             clearTimeout(this.timer);
             this.message = msg;
@@ -93,10 +101,14 @@ export default {
         logout() {
             this.loggedIn = false;
         },
-        onWelcomeClose() {
-            this.showWelcome = false;
+        onRouteLoad(route) {
+            this.route = route;
             this.login();
-        }
+        },
+        getTime() {
+            setTimeout(this.getTime, this.timeUpdateInterval);
+            this.time = new Date;
+        },
     }
 };
 </script>
