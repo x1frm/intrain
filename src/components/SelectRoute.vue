@@ -1,5 +1,5 @@
 <template>
-    <div v-if="routes" class="select-route">
+    <div v-if="routes && routes.length" class="select-route">
         <div class="title">
             Выберите Ваш маршрут:
         </div>
@@ -50,8 +50,7 @@
         </v-card>
     </div>
     <div v-else class="select-route-onerr">
-        <div v-if="isLoading">
-            Loader
+        <div v-if="isLoading" class="loader">
         </div>
         <div v-else>
             Похоже, все электрички Москва - Петушки сейчас в депо. Хотите просто послушать истории?
@@ -64,13 +63,8 @@ import mainService from '../services/main.service'
 export default {
     name: 'SelectRoute',
     props: {
-        routes: Array,
+        routes: Array || null,
         time: Date
-    },
-    data() {
-        return {
-            isLoading: true
-        }
     },
     computed: {
         currentStop() {
@@ -97,12 +91,15 @@ export default {
             } catch {
                 return [];
             }
+        },
+        isLoading() {
+            return this.routes === null;
         }
     },
     methods: {
         onRouteSelect(route) {
             this.$emit('route-loaded', route);
         }
-    }
+    },
 }
 </script>

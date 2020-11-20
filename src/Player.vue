@@ -26,12 +26,11 @@ export default {
         Donate
     },
     props: {
-        route: Object
+        route: Object,
+        time: Date
     },
     data() {
         return {
-            time: new Date,
-            timeUpdateInterval: 1000,
             manualMode: false,
             manualModeStop: 0,
             showDonate: false
@@ -56,16 +55,10 @@ export default {
         }
     },
     mounted() {
-        this.getTime();
-
         EventBus.$on('swipe-left', () => this.changeStop(this.currentStop + 1));
         EventBus.$on('swipe-right', () => this.changeStop(this.currentStop - 1));
     },
     methods: {
-        getTime() {
-            setTimeout(this.getTime, this.timeUpdateInterval);
-            this.time = new Date;
-        },
         changeStop(idx) {
             if (idx < 0 || idx >= this.route.stops.length) return;
             this.manualMode = true;

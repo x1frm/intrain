@@ -3,7 +3,7 @@
         <div id="intrain">
             <Welcome v-if="showWelcome" @close="showWelcome = false" />
             <SelectRoute v-else-if="!loggedIn" :routes="nowRoutes" @route-loaded="onRouteLoad" :time="time" />
-            <Player v-else :route="route" id="player" />
+            <Player v-else :route="route" id="player" :time="time" />
 
             <div class="message" :class="showMessage && 'show'">
                 {{ message }}
@@ -29,7 +29,7 @@ export default {
     data() {
         return {
             route: null,
-            nowRoutes: [],
+            nowRoutes: null,
             loggedIn: false,
             message: '',
             showMessage: false,
