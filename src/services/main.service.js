@@ -11,6 +11,8 @@ class MainService {
         );
         const now = Date.now();
         const nowRoutes = await Promise.all(todayRoutesDto.data.segments.filter(route => {
+            if (route.thread.express_type) return false;
+
             const departure = this.getUnixFromISODate(route.departure);
             const arrival = this.getUnixFromISODate(route.arrival);
 

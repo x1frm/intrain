@@ -68,6 +68,7 @@ export default {
             margin: 0 8px;
             cursor: pointer;
             user-select: none;
+            color: $secondary;
 
             &:hover {
                 opacity: 0.8;

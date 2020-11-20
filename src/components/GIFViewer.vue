@@ -1,7 +1,9 @@
 <template>
     <div class="gifs">
         <div v-show="isLoading" class="loader"></div>
-        <img v-show="!isLoading" :src="gifSrc" ref="img" />
+        <video v-show="!isLoading" ref="video" :src="gifSrc" type="video/mp4" loop>
+            <!-- <source :src="gifSrc" type="video/mp4"> -->
+        </video>
     </div>
 </template>
 
@@ -18,13 +20,14 @@ export default {
     },
     computed: {
         gifSrc() {
-            return '/assets/gif/' +  (this.currentStop % 18 + 1) + '.gif';
+            return '/assets/gif/' +  (this.currentStop + 1) + '.mp4';
         }
     },
     mounted() {
-        const img = this.$refs.img;
-        img.onload = () => {
+        const video = this.$refs.video;
+        video.onloadeddata = () => {
             this.isLoading = false;
+            video.play();
         }
     },
     watch: {
@@ -43,7 +46,7 @@ export default {
         position: relative;
     }
 
-    img {
+    video {
         max-width: 90%;
     }
 </style>

@@ -84,7 +84,7 @@ export default {
         .circle {
             content: '';
             border-radius: 100%;
-            background-color: $main;
+            background-color: $secondary;
             width: 10px;
             height: 10px;
             margin-right: 8px;
@@ -101,14 +101,14 @@ export default {
             }
 
             &.passed {
-                background-color: $secondary;
+                background-color: $main;
             }
 
             .pulse {
                 animation: pulsing 3s ease-out;
                 animation-iteration-count: infinite;
 
-                border: 6px solid $secondary;
+                border: 6px solid $main;
                 background: transparent;
                 border-radius: 60px;
                 height: 28px;
