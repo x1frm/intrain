@@ -6,20 +6,20 @@
         <v-card v-for="(route, idx) in routes"
             :key="route.arrival"
             @click="onRouteSelect(route)"
-            class="mx-auto"
+            class="card"
             elevation="2"
             outlined
             hover
             tile>
-            <i class="fas fa-subway"></i>
+            <i class="fas fa-subway train-icon"></i>
             <span class="number">
                 {{ route.thread.number }}
             </span>
-            <span class="route-title">
+            <!-- <span class="route-title">
                 {{ route.thread.title }}
-            </span>
+            </span> -->
 
-            <div class="time-row">
+            <div class="row">
                 <div class="time">
                     {{ route.departure.slice(11, 16) }}
                 </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="stations-row">
+            <div class="row">
                 <div class="station-name">
                     Москва
                 </div>
@@ -72,10 +72,15 @@ export default {
                 const now = this.time.valueOf();
                 return this.routes.map(route => {
                     try {
-                        const nextStop = route.stops.findIndex(stop => stop.time > now);
+                        const nextStop = route.stops.findIndex(stop => stop.departure > now);
                         switch (nextStop) {
                         case -1:
-                            return route.stops[route.stops.length - 1].title;
+                            return route.stops[route.stops.length - 1].arrival < now ?
+                                {
+                                    from: route.stops[route.stops.length - 2].title,
+                                    to: route.stops[route.stops.length - 1].title
+                                } :
+                                route.stops[route.stops.length - 1].title;
                         case 0:
                             return route.stops[0].title;
                         default:
@@ -98,8 +103,53 @@ export default {
     },
     methods: {
         onRouteSelect(route) {
-            this.$emit('route-loaded', route);
+            setTimeout(() => this.$emit('route-loaded', route), 200);
         }
     },
 }
 </script>
+
+<style lang="scss" scoped>
+    .select-route {
+        padding: 16px;
+
+        .row {
+            margin: 0 !important;
+            justify-content: space-between;
+        }
+    }
+
+    .title {
+        margin-bottom: 16px;
+    }
+
+    .train-icon {
+        color: $main;
+    }
+
+    .card {
+        text-align: left;
+        padding: 4px;
+        margin-bottom: 16px;
+    }
+
+    .time {
+        font-size: 24px;
+    }
+
+    .now-station {
+        font-size: 12px;
+    }
+
+    .station-name {
+        font-size: 14px;
+    }
+
+    .line {
+        height: 2px;
+        flex: auto;
+        background-color: $gray;
+        align-self: center;
+        margin: 0 8px;
+    }
+</style>

@@ -12,7 +12,7 @@
                 {{ stop.title }}
             </div>
             <div class="time">
-                {{ formatTime(stop.time) }}
+                {{ formatTime(stop.departure || stop.arrival) }}
             </div>
         </div>
 

@@ -27,7 +27,8 @@ export default {
     },
     props: {
         route: Object,
-        time: Date
+        time: Date,
+        timeUpdateInterval: Number
     },
     data() {
         return {
@@ -40,7 +41,7 @@ export default {
         currentStop() {
             if (this.manualMode) return this.manualModeStop;
 
-            const nextStop = this.route.stops && this.route.stops.findIndex(el => el.time - this.timeUpdateInterval > this.time.getTime());
+            const nextStop = this.route.stops && this.route.stops.findIndex(el => el.departure - this.timeUpdateInterval > this.time.getTime());
             if (nextStop === -1) {
                 return this.route.stops.length - 1;
             }

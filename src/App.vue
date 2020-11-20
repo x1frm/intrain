@@ -3,7 +3,7 @@
         <div id="intrain">
             <Welcome v-if="showWelcome" @close="showWelcome = false" />
             <SelectRoute v-else-if="!loggedIn" :routes="nowRoutes" @route-loaded="onRouteLoad" :time="time" />
-            <Player v-else :route="route" id="player" :time="time" />
+            <Player v-else :route="route" id="player" :time="time" :timeUpdateInterval="timeUpdateInterval" />
 
             <div class="message" :class="showMessage && 'show'">
                 {{ message }}

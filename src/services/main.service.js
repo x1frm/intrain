@@ -29,10 +29,19 @@ class MainService {
                 unixArrival,
                 unixDeparture,
                 ...route,
-                stops: stopsDto.data.stops.map(stop => ({
-                    title: stop.station.popular_title || stop.station.title,
-                    time: this.getUnixFromISODate(stop.departure)
-                }))
+                stops: stopsDto.data.stops.map(stop => {
+                    let title;
+                    if (stop.station.title.startsWith('Нижегородская')) {
+                        title = 'Нижегородская';
+                    } else {
+                        title = stop.station.popular_title || stop.station.title;
+                    }
+                    return {
+                        title,
+                        departure: this.getUnixFromISODate(stop.departure),
+                        arrival: this.getUnixFromISODate(stop.arrival)
+                    }
+                })
             };
         }));
 
