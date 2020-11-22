@@ -28,7 +28,7 @@ class MainService {
                 unixArrival,
                 unixDeparture,
                 ...route,
-                stops: stopsDto.data.stops.map(stop => {
+                stops: stopsDto.data.stops.slice(0, 37).map(stop => {
                     let title;
                     if (stop.station.title.startsWith('Нижегородская')) {
                         title = 'Нижегородская';
