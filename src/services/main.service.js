@@ -1,13 +1,12 @@
 import axios from 'axios';
-
-const proxy = 'http://192.168.1.5:7000';
+import { RASP_PROXY_URL } from '../config';
 
 class MainService {
     async getRoutes() {
         let date = new Date();
         date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
         const todayRoutesDto = await axios.get(
-            `${proxy}/v3.0/search/?from=c213&to=s9612144&transport_types=suburban&date=${date}`,
+            `${RASP_PROXY_URL}/?mp-action=search&from=c213&to=s9612144&transport_types=suburban&date=${date}`,
         );
         const now = Date.now();
         const nowRoutes = await Promise.all(todayRoutesDto.data.segments.filter(route => {
@@ -22,7 +21,7 @@ class MainService {
             const unixDeparture = this.getUnixFromISODate(route.departure);
             const unixArrival = this.getUnixFromISODate(route.arrival);
             const stopsDto = await axios.get(
-                `${proxy}/v3.0/thread/?date=${date}&uid=${route.thread.uid}`
+                `${RASP_PROXY_URL}/?mp-action=thread&?date=${date}&uid=${route.thread.uid}`
             );
 
             return {
