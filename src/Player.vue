@@ -1,7 +1,11 @@
 <template>
     <div class="player">
         <Header :time="time" :routeName="route.title" />
-        <StationsList :stops="route.stops" :currentStop="currentStop" @change-stop="changeStop" />
+        <StationsList :stops="route.stops"
+            :currentStop="currentStop"
+            @change-stop="changeStop"
+            :isDefaultRoute="isDefaultRoute"
+        />
         <GIFViewer :currentStop="currentStop" class="gifs" />
         <Controls :currentStop="currentStop" @change-stop="changeStop" :stops="route.stops" />
         <Donate :show="showDonate" @close="showDonate = false" />
@@ -28,7 +32,8 @@ export default {
     props: {
         route: Object,
         time: Date,
-        timeUpdateInterval: Number
+        timeUpdateInterval: Number,
+        isDefaultRoute: Boolean
     },
     data() {
         return {
@@ -58,6 +63,10 @@ export default {
         }
     },
     mounted() {
+        if (this.isDefaultRoute) {
+            this.manualMode = true;
+            this.manualModeStop = 0;
+        }
         EventBus.$on('swipe-left', () => this.changeStop(this.currentStop + 1));
         EventBus.$on('swipe-right', () => this.changeStop(this.currentStop - 1));
     },

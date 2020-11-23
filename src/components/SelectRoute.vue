@@ -49,12 +49,18 @@
             </div>
         </v-card>
     </div>
+    <div v-else-if="isLoading" class="loader">
+    </div>
     <div v-else class="select-route-onerr">
-        <div v-if="isLoading" class="loader">
-        </div>
-        <div v-else>
-            Похоже, все электрички Москва - Петушки сейчас в депо. Хотите просто послушать истории?
-        </div>
+        Похоже, все электрички Москва - Петушки сейчас в депо. Хотите просто послушать истории?
+        <br><br>
+        <v-btn
+            @click="$emit('route-selected', 'default')"
+            text
+            class="main-btn"
+        >
+            Послушать
+        </v-btn>
     </div>
 </template>
 
@@ -103,20 +109,30 @@ export default {
     },
     methods: {
         onRouteSelect(route) {
-            setTimeout(() => this.$emit('route-loaded', route), 200);
+            setTimeout(() => this.$emit('route-selected', route), 200);
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-    .select-route {
+    .select-route, .select-route-onerr {
         padding: 16px;
+    }
+    
+    .select-route-onerr {
+        max-width: 400px;
+        margin: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .row {
-            margin: 0 !important;
-            justify-content: space-between;
-        }
+    .row {
+        margin: 0 !important;
+        justify-content: space-between;
     }
 
     .title {

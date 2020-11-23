@@ -12,7 +12,7 @@
                 {{ stop.title }}
             </div>
             <div class="time">
-                {{ formatTime(stop.departure || stop.arrival) }}
+                {{ !isDefaultRoute ? formatTime(stop.departure || stop.arrival) : '' }}
             </div>
         </div>
 
@@ -24,7 +24,8 @@ export default {
     name: 'StationsList',
     props: {
         stops: Array,
-        currentStop: Number
+        currentStop: Number,
+        isDefaultRoute: Boolean
     },
     computed: {
         stopsAmount() {

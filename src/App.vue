@@ -2,8 +2,13 @@
     <v-app>
         <div id="intrain">
             <Welcome v-if="showWelcome" @close="showWelcome = false" />
-            <SelectRoute v-else-if="!loggedIn" :routes="nowRoutes" @route-loaded="onRouteLoad" :time="time" />
-            <Player v-else :route="route" id="player" :time="time" :timeUpdateInterval="timeUpdateInterval" />
+            <SelectRoute v-else-if="!loggedIn" :routes="nowRoutes" @route-selected="onRouteSelect" :time="time" />
+            <Player v-else
+                :route="route"
+                id="player"
+                :time="time"
+                :timeUpdateInterval="timeUpdateInterval"
+                :isDefaultRoute="!!defaultRoute" />
 
             <div class="message" :class="showMessage && 'show'">
                 {{ message }}
@@ -18,6 +23,7 @@ import mainService from './services/main.service';
 import Welcome from './components/Welcome';
 import { EventBus } from '@/main.js';
 import SelectRoute from './components/SelectRoute';
+import Axios from 'axios';
 
 export default {
     name: 'App',
@@ -30,6 +36,7 @@ export default {
         return {
             route: null,
             nowRoutes: null,
+            defaultRoute: null,
             loggedIn: false,
             message: '',
             showMessage: false,
@@ -42,6 +49,11 @@ export default {
     async created() {
         EventBus.$on('logout', this.logout);
         this.nowRoutes = await mainService.getRoutes();
+        if (!this.nowRoutes.length) {
+            Axios.get('assets/default-schedule.json').then(res => {
+                this.defaultRoute = res.data;
+            });
+        }
     },
     mounted() {
         this.getTime();
@@ -101,9 +113,21 @@ export default {
         logout() {
             this.loggedIn = false;
         },
-        onRouteLoad(route) {
-            this.route = route;
-            this.login();
+        onRouteSelect(route) {
+            if (route === 'default') {
+                const waitUntilRouteLoad = () => {
+                    if (this.defaultRoute) {
+                        this.route = this.defaultRoute;
+                        this.login();
+                    } else {
+                        setTimeout(waitUntilRouteLoad, 300);
+                    }
+                }
+                waitUntilRouteLoad();
+            } else {
+                this.route = route;
+                this.login();
+            }
         },
         getTime() {
             setTimeout(this.getTime, this.timeUpdateInterval);
