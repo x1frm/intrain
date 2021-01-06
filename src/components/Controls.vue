@@ -9,14 +9,20 @@
         </div>
 
         <audio :src="`assets/audio/${currentStop + 2}.ogg`" ref="audio" type="audio/ogg" />
+
+        <Donate :show="showDonate" @close="showDonate = false" />
     </div>
 </template>
 
 <script>
 import { EventBus } from '@/main.js';
+import Donate from './Donate';
 
 export default {
     name: 'Controls',
+    components: {
+        Donate
+    },
     props: {
         currentStop: Number,
         stops: Array
@@ -24,11 +30,17 @@ export default {
     data() {
         return {
             paused: true,
+            showDonate: false
         }
     },
     watch: {
-        currentStop() {
-            !this.paused && this.currentStop < this.stops.length && this.playAudio();
+        async currentStop() {
+            this.currentStop < this.stops.length && this.playAudio();
+
+            await this.$nextTick();
+            this.currentStop === this.stops.length - 1 ?
+                this.$refs.audio.addEventListener('ended', this.onAudioEnd) :
+                this.$refs.audio.removeEventListener('ended', this.onAudioEnd);
         }
     },
     mounted() {
@@ -53,6 +65,9 @@ export default {
             await this.$nextTick();
             this.$refs.audio.play();
             this.paused = false;
+        },
+        onAudioEnd() {
+            this.showDonate = true;
         }
     }
 }

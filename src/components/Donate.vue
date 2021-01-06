@@ -45,7 +45,7 @@
                     <v-spacer></v-spacer>
                     <v-btn
                         text
-                        href="http://azino-tri-topora.top/"
+                        @click="logout()"
                         class="main-btn"
                     >
                         Дать ему денег

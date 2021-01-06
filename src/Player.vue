@@ -8,7 +8,6 @@
         />
         <GIFViewer :currentStop="currentStop" class="gifs" />
         <Controls :currentStop="currentStop" @change-stop="changeStop" :stops="route.stops" />
-        <Donate :show="showDonate" @close="showDonate = false" />
     </div>
 </template>
 
@@ -17,7 +16,6 @@ import Header from './components/Header';
 import StationsList from './components/StationsList';
 import GIFViewer from './components/GIFViewer';
 import Controls from './components/Controls';
-import Donate from './components/Donate';
 import { EventBus } from '@/main';
 
 export default {
@@ -26,8 +24,7 @@ export default {
         Header,
         StationsList,
         GIFViewer,
-        Controls,
-        Donate
+        Controls
     },
     props: {
         route: Object,
@@ -38,8 +35,7 @@ export default {
     data() {
         return {
             manualMode: false,
-            manualModeStop: 0,
-            showDonate: false
+            manualModeStop: 0
         }
     },
     computed: {
@@ -53,13 +49,6 @@ export default {
                     this.route.stops.length - 1;
             }
             return nextStop - 1;
-        }
-    },
-    watch: {
-        currentStop(newVal) {
-            if (newVal === this.route.stops.length - 1) {
-                this.showDonate = true;
-            }
         }
     },
     mounted() {
