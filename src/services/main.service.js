@@ -57,6 +57,20 @@ class MainService {
         const s = iso.slice.bind(iso);
         return new Date(s(0, 4), s(5, 7) - 1, s(8, 10), s(11, 13), s(14, 16), s(17, 19)).valueOf();
     }
+
+    getTime(date) {
+        const hours = date.getHours();
+        const mins = date.getMinutes();
+        let result = '';
+        for (let i of [hours, mins]) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            result += i += ':';
+        }
+
+        return result.slice(0,5);
+    }
 }
 
 export default new MainService();

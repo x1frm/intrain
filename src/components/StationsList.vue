@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import mainService from '../services/main.service';
 export default {
     name: 'StationsList',
     props: {
@@ -43,7 +44,7 @@ export default {
     methods: {
         formatTime(unix) {
             const time = new Date(unix);
-            return time.getHours() + ':' + time.getMinutes();
+            return mainService.getTime(time);
         },
         onStopClick(idx) {
             this.$emit('change-stop', idx);

@@ -59,12 +59,13 @@
             МОСКВА - ПЕТУШКИ
         </div>
         <div class="time">
-            {{ time.getHours() + ':' + time.getMinutes() }}
+            {{ timeString }}
         </div>
     </div>
 </template>
 
 <script>
+import mainService from '../services/main.service'
 export default {
     name: 'Header',
     props: {
@@ -73,6 +74,11 @@ export default {
     data() {
         return {
             dialog: false
+        }
+    },
+    computed: {
+        timeString() {
+            return mainService.getTime(this.time);
         }
     }
 }
