@@ -41,7 +41,7 @@
             <div v-if="currentStop[idx]" class="now-station">
                 Сейчас на:
                 <span v-if="typeof currentStop[idx] === 'object'">
-                    {{ currentStop[idx].from }} ⟶ {{ currentStop[idx].to }}
+                    {{ currentStop[idx].from }} <i class="fas fa-long-arrow-alt-right"></i> {{ currentStop[idx].to }}
                 </span>
                 <span v-else>
                     {{ currentStop[idx] }}

@@ -59,7 +59,7 @@
             МОСКВА - ПЕТУШКИ
         </div>
         <div class="time">
-            {{ time.toLocaleTimeString('ru-RU').slice(0, 5) }}
+            {{ time.getHours() + ':' + time.getMinutes() }}
         </div>
     </div>
 </template>

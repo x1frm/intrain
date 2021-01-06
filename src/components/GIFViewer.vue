@@ -1,7 +1,7 @@
 <template>
     <div class="gifs">
         <div v-show="isLoading && currentStop !== -1" class="loader"></div>
-        <video v-show="!isLoading" ref="video" :src="gifSrc" type="video/mp4" loop>
+        <video v-show="!isLoading" ref="video" :src="gifSrc" type="video/mp4" loop playsinline muted webkit-playsinline autoplay>
             <!-- <source :src="gifSrc" type="video/mp4"> -->
         </video>
     </div>
@@ -25,10 +25,10 @@ export default {
     },
     mounted() {
         const video = this.$refs.video;
-        video.onloadeddata = () => {
+        video.addEventListener('loadedmetadata', () => {
             this.isLoading = false;
             video.play();
-        }
+        }, false);
     },
     watch: {
         currentStop() {

@@ -58,6 +58,8 @@ export default {
     mounted() {
         this.getTime();
 
+        document.body.scrollTop = 0;
+
         EventBus.$on('notificate', msg => {
             clearTimeout(this.timer);
             this.message = msg;
@@ -140,7 +142,7 @@ export default {
 <style lang="scss">
 html, body, #app, #intrain, #player, .v-application--wrap {
     height: 100% !important;
-    min-height: unset !important;
+    min-height: 100% !important;
     margin: 0;
 }
 
@@ -159,7 +161,7 @@ html, body, #app, #intrain, #player, .v-application--wrap {
     #intrain {
         width: 600px;
         border: 2px solid black;
-        margin: 20px auto;
+        margin: 0 auto;
         height: calc(100vh - 44px);
         width: calc((100vh - 44px) / 1.77);
     }

@@ -42,7 +42,8 @@ export default {
     },
     methods: {
         formatTime(unix) {
-            return (new Date(unix)).toLocaleTimeString('ru-RU').slice(0, 5);
+            const time = new Date(unix);
+            return time.getHours() + ':' + time.getMinutes();
         },
         onStopClick(idx) {
             this.$emit('change-stop', idx);

@@ -186,6 +186,9 @@ export default {
         flex: auto;
         overflow: auto;
         margin: 16px 0 0;
+
+        // height of logo, bottom button and padding of .welcome
+        height: calc(100% - 112px);
     }
 
     .feature {
@@ -195,6 +198,7 @@ export default {
         text-align: left;
         align-self: baseline;
         justify-content: flex-start;
+        flex-shrink: 0;
 
         .icon {
             margin-right: 24px;
