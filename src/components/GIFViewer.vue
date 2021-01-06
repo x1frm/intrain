@@ -1,6 +1,6 @@
 <template>
     <div class="gifs">
-        <div v-show="isLoading && currentStop !== -1" class="loader"></div>
+        <div v-show="isLoading" class="loader"></div>
         <video v-show="!isLoading" ref="video" :src="gifSrc" type="video/mp4" loop playsinline muted webkit-playsinline autoplay>
             <!-- <source :src="gifSrc" type="video/mp4"> -->
         </video>
@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         gifSrc() {
-            return 'assets/gif/' +  (this.currentStop + 1) + '.mp4';
+            return 'assets/gif/' +  (this.currentStop + 2) + '.mp4';
         }
     },
     mounted() {

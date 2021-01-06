@@ -23,24 +23,27 @@ class MainService {
             const stopsDto = await axios.get(
                 `${RASP_PROXY_URL}/?mp-action=thread&?date=${date}&uid=${route.thread.uid}`
             );
+            const stationCodes = ["s2000001", "s9601796", "s9601835", "s9601856", "s9601671", "s9601737", "s9600796", "s9601177", "s9601902", "s9601767", "s9601675", "s9601301", "s9601192", "s9600773", "s9601867", "s9601631", "s9602038", "s9601783", "s9601680", "s9601782", "s9601653", "s9601872", "s9601755", "s9602082", "s9600699", "s9634002", "s9601539", "s9602107", "s9601734", "s9600684", "s9601795", "s9601645", "s9601363", "s9601811", "s9601828", "s9612144"];
 
             return {
                 unixArrival,
                 unixDeparture,
                 ...route,
-                stops: stopsDto.data.stops.slice(0, 37).map(stop => {
-                    let title;
-                    if (stop.station.title.startsWith('Нижегородская')) {
-                        title = 'Нижегородская';
-                    } else {
-                        title = stop.station.popular_title || stop.station.title;
-                    }
-                    return {
-                        title,
-                        departure: this.getUnixFromISODate(stop.departure),
-                        arrival: this.getUnixFromISODate(stop.arrival)
-                    }
-                })
+                stops: stopsDto.data.stops
+                    .filter(stop => stationCodes.includes(stop.station.code))
+                    .map(stop => {
+                        let title;
+                        if (stop.station.title.startsWith('Нижегородская')) {
+                            title = 'Нижегородская';
+                        } else {
+                            title = stop.station.popular_title || stop.station.title;
+                        }
+                        return {
+                            title,
+                            departure: this.getUnixFromISODate(stop.departure),
+                            arrival: this.getUnixFromISODate(stop.arrival)
+                        }
+                    })
             };
         }));
 

@@ -3,12 +3,12 @@
         <div class="buttons">
             <i class="fas fa-backward" @click="seekAudio(-5)"></i>
             <i class="fas fa-step-backward" @click="changeStop(-1)"></i>
-            <i class="fas" :class="[paused ? 'fa-play' : 'fa-pause', currentStop === -1 && 'disabled']" @click="playPause()"></i>
+            <i class="fas" :class="paused ? 'fa-play' : 'fa-pause'" @click="playPause()"></i>
             <i class="fas fa-step-forward" @click="changeStop(1)"></i>
             <i class="fas fa-forward" @click="seekAudio(5)"></i>
         </div>
 
-        <audio :src="`assets/audio/${currentStop % 28 + 1}.mp3`" ref="audio" />
+        <audio :src="`assets/audio/${currentStop + 2}.ogg`" ref="audio" type="audio/ogg" />
     </div>
 </template>
 
@@ -28,11 +28,11 @@ export default {
     },
     watch: {
         currentStop() {
-            !this.paused && this.currentStop < this.stops.length - 1 && this.playAudio();
+            !this.paused && this.currentStop < this.stops.length && this.playAudio();
         }
     },
     mounted() {
-        if (this.currentStop !== -1) this.playAudio();
+        this.playAudio();
         this.$refs.audio.addEventListener('ended', () => this.paused = true);
     },
     methods: {
@@ -43,7 +43,6 @@ export default {
             EventBus.$emit('notificate', `${Math.abs(sec)} секунд ${direction}`);
         },
         playPause() {
-            if (this.currentStop === -1) return;
             this.paused ? this.$refs.audio.play() : this.$refs.audio.pause();
             this.paused = !this.paused;
         },
