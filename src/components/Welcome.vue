@@ -8,8 +8,7 @@
                 v-model="slide"
                 @change="onSlideChange"
                 hide-delimiter-background
-                height="100%"
-                light>
+                height="100%">
                 <v-carousel-item>
                     <div class="theather-info">
                         Привет! 

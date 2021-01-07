@@ -151,6 +151,7 @@ html, body, #app, #intrain, #player, .v-application--wrap {
     text-align: center;
     color: $text-color;
     height: 100%;
+    background-color: $bg;
 }
 
 .main-btn {
