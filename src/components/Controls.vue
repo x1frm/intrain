@@ -8,7 +8,7 @@
             <i class="fas fa-forward" @click="seekAudio(5)"></i>
         </div>
 
-        <audio :src="`assets/audio/${currentStop + 2}.ogg`" ref="audio" type="audio/ogg" />
+        <audio :src="`assets/audio/${currentStop + 2}.mp3`" ref="audio" />
 
         <Donate :show="showDonate" @close="showDonate = false" />
     </div>
